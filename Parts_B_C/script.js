@@ -17,12 +17,21 @@ function fetchData() {
 }
 
 function ShowQuestions(quizData) {
-  // let quizBody = document.querySelector("#quizBody");
-  // let quizTitle = document.querySelector("#quizTitle");
-  // let data = quizData;
-  // quizTitle.innerHTML = data.title;
-  // quizBody.innerHTML = "";
-  // let cardHTML = "";
+  let quizBody = document.querySelector("#quizBody");
+  let quizTitle = document.querySelector("#quizTitle");
+  let tabs = document.querySelector("#tabs");
+  let data = quizData;
+  quizTitle.innerHTML = data.title;
+  quizBody.innerHTML = "";
+  let cardHTML = "";
+  let tabHTML = "";
+
+  // Create the tabs for navigating the quiz
+  data.questions.forEach((question, i) => {
+    tabHTML += `<li class = "nav-item>`;
+    tabHTML += `<a class = "nav-link" aria-current = "page" href = "#">Question${i}>`;
+  });
+
   // data.questions.forEach((question, i) => {
   //   cardHTML += `<div class="card">`;
   //   cardHTML += `<h3>${question.questionText}</h3>`;

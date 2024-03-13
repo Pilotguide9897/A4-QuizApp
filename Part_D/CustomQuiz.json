@@ -1,50 +1,145 @@
 {
-  "title": "",
+  "title": "Ecological Excapades",
   "questions": [
     {
-      "questionText": "",
-      "choices": ["", "", "", ""],
+      "questionText": "Which of the following animals is known for its ability to change color as a form of camouflage?",
+      "choices": [
+        "African Elephand",
+        "Polar Bear",
+        "Chamelion",
+        "Siberian Tiger"
+      ],
       "answer": 3
     },
     {
-      "questionText": "",
-      "choices": ["", "", "", ""],
+      "questionText": "What is the primary diet of a panda?",
+      "choices": ["Insects", "Bamboo", "Fish", "Berries"],
       "answer": 2
     },
     {
-      "questionText": "?",
-      "choices": ["", "", "", ""],
+      "questionText": "Which bird is famous for its impressive mating dance and colourful plumage?",
+      "choices": ["Bald Eagle", "Emperor Penguin", "Peacock", "Albatross"],
       "answer": 2
     },
     {
-      "questionText": "?",
-      "choices": ["", "", "", ""],
+      "questionText": "What type of habitat do polar bears primarily inhabit?",
+      "choices": [
+        "Tropical Rainforests",
+        "Deserts",
+        "Arctic Ice Caps",
+        "Grasslands"
+      ],
+      "answer": 3
+    },
+    {
+      "questionText": "The Amazon Rainforest is home to approximately what percentage of Earth's species?",
+      "choices": ["5%", "10%", "25%", "40%"],
+      "answer": 3
+    },
+    {
+      "questionText": "Which of the following species is critically endangered?",
+      "choices": ["Grey Wolf", "American Bison", "Javan Rhino", "Red Fox"],
+      "answer": 3
+    },
+    {
+      "questionText": "Which animal is known for its ability to mimic the sounds of other animals and even man-made sounds?",
+      "choices": ["African Grey Parrot", "Dolphin", "Elephant", "Bat"],
+      "answer": 1
+    },
+    {
+      "questionText": "What unique feature do marsupials have compared to other mammals?",
+      "choices": [
+        "They lay eggs",
+        "They have a pouch for carrying their young",
+        "They are capable of flight",
+        "They live underwater"
+      ],
       "answer": 2
     },
     {
-      "questionText": "?",
-      "choices": ["", "", "", ""],
+      "questionText": "Which of the following animals uses echolocation to navigate and find food?",
+      "choices": ["Bat", "Penguin", "Elephant", "Giraffe"],
+      "answer": 1
+    },
+    {
+      "questionText": "What is the primary cause of deforestation in the Amazon rainforest?",
+      "choices": [
+        "Urban expansion",
+        "Agriculture and cattle ranching",
+        "Natural wildfires",
+        "Mining operations"
+      ],
       "answer": 2
     },
     {
-      "questionText": "?",
-      "choices": ["", "", "", ""],
+      "questionText": "Which marine animal is known for its intelligence and complex social behaviour?",
+      "choices": ["Great White Shark", "Clownfish", "Dolpin", "Sea Urchin"],
+      "answer": 3
+    },
+    {
+      "questionText": "Which of these species is known to have a matriarchal social structure?",
+      "choices": ["Lions", "Elephants", "Gorillas", "Giraffes"],
       "answer": 2
     },
     {
-      "questionText": "?",
-      "choices": ["", "", "", ""],
+      "questionText": "Which of the following is a keystone species?",
+      "choices": [
+        "The European Rabbit in Australia",
+        "The Sea Otter in the Pacific Ocean",
+        "The Domestic Cat in Urban Areas",
+        "Pidgeons in Cities"
+      ],
       "answer": 2
     },
     {
-      "questionText": "?",
-      "choices": ["", "", "", ""],
+      "questionText": "In which layer of the ocean do most fish and marine life exist?",
+      "choices": [
+        "Abyssal Zone",
+        "Hadal Zone",
+        "Bathyal Zone",
+        "Epipelagic Zone"
+      ],
+      "answer": 4
+    },
+    {
+      "questionText": "What adaptation helps camels survive in desert conditions?",
+      "choices": [
+        "The ability to go without water for long periods",
+        "Large feet to walk on sand",
+        "Thick fur to block the sun",
+        "All of the above"
+      ],
+      "answer": 4
+    },
+    {
+      "questionText": "Which of the following is not a type of biome?",
+      "choices": ["Tundra", "Savannah", "Coral Reef", "Freshwater"],
+      "answer": 3
+    },
+    {
+      "questionText": "What is the main reason for the decline of coral reefs around the world?",
+      "choices": [
+        "Overfishing",
+        "Climate Change",
+        "Plastic Polution",
+        "All of the Above"
+      ],
+      "answer": 4
+    },
+    {
+      "questionText": "Which of the following animals migrate the longest distance anually?",
+      "choices": [
+        "Monarch Butterfly",
+        "Arctic Tern",
+        "Humpback Whale",
+        "Canadian Goose"
+      ],
       "answer": 2
     },
     {
-      "questionText": "?",
-      "choices": ["", "", "", ""],
-      "answer": 2
+      "questionText": "Which of the following species can be found in every ocean of the world?",
+      "choices": ["Blue Whale", "Great White Shark", "Seahorse", "Jellyfish"],
+      "answer": 4
     }
   ]
 }

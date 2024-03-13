@@ -1,33 +1,43 @@
 window.onload = function () {
-  let url = null;
+  fetchData();
+};
+
+function fetchData() {
+  let url = "./QuizTemplates/GeographyQuiz.json";
   let xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = FetchQuizData();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      console.log("Response Data:", xhr.responseText);
+      let quizData = JSON.parse(xhr.responseText);
+      ShowQuestions(quizData);
+    }
+  };
   xhr.open("GET", url, true);
   xhr.send();
-  ShowQuestions();
-};
+}
 
-let quizData = function FetchQuizData() {
-  if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-    return xhr.responseText;
-  }
-};
-
-function ShowQuestions() {
+function ShowQuestions(quizData) {
   let quizBody = document.querySelector("#quizBody");
   let quizTitle = document.querySelector("#quizTitle");
-  quizTitle.innerHTML = quizData.title;
-  for (let i = 0; i < quizData.length; i++) {
-    let question = quizData[i];
-    quizBody.innerHTML = `<div class="card">`;
-    quizBody.innerHTML += `<ul>`;
+  let data = quizData;
+  quizTitle.innerHTML = data.title;
+  quizBody.innerHTML = "";
+  let cardHTML = "";
+  data.questions.forEach((question, i) => {
+    cardHTML += `<div class="card">`;
+    cardHTML += `<h3>${question.questionText}</h3>`;
+    cardHTML += `<ul>`;
 
-    for (let j = 0; j < question.length; j++) {
-      let option = question[i];
-      // quizBody += `<li class="list-group-item"><input type = "radio" id = Question${i} name = Question${i} value = ${i}><label for = "Question${i}>${option}</label></li>`;
-    }
+    data.questions[i].choices.forEach((choice, j) => {
+      console.log(choice);
+      cardHTML += `<li class="list-group-item">`;
+      cardHTML += `<input type = "radio" id = Q${i}Choice${j} name = Question${i} value = ${data.questions[i].answer}>`;
+      cardHTML += `<label for = "Questions">${choice}</label></li>`;
+    });
 
-    quizBody.innerHTML += `</ul>`;
-    quizBody.innerHTML = `</div>`;
-  }
+    cardHTML += `</ul>`;
+    cardHTML += `</div>`;
+  });
+  console.log(cardHTML);
+  quizBody.innerHTML = cardHTML;
 }

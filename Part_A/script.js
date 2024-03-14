@@ -23,10 +23,12 @@ function ShowQuestions(quizData) {
   quizTitle.innerHTML = data.title;
   quizBody.innerHTML = "";
   let cardHTML = "";
+  let count = 0;
   data.questions.forEach((question, i) => {
     cardHTML += `<div class="card">`;
-    cardHTML += `<h3 class="questionText">${question.questionText}</h3>`;
+    cardHTML += `<h3 class="questionText">Question ${count}: <br /> ${question.questionText}</h3>`;
     cardHTML += `<ul>`;
+    count++;
 
     data.questions[i].choices.forEach((choice, j) => {
       console.log(choice);

@@ -28,6 +28,45 @@
         <ul class="nav nav-pills" id="tabs"></ul>
         <div class="tab-content" id="tabContent"></div>
       </div>
+
+      <aside>
+        <!-- Modal for informing the user that they have forgotten to answer questions -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Questions Remaining:
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body" id="remainingQuestions">
+                gadagdfdafafaf
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
     </main>
     <footer>
       <button type="button" class="btn btn-success mt-3" id="btnSubmit">

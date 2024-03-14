@@ -39,7 +39,7 @@ function ShowQuestions(quizData) {
       type="button"
       role="tab"
     >
-      Question ${i}
+      Question ${i + 1}
     </button>`;
     tabHTML += `</li>`;
   });
@@ -70,13 +70,24 @@ function ShowQuestions(quizData) {
   console.log(sectionHTML);
 }
 
+// Checks and determines whether there are any unanswered questions.
 function showResults() {
-  // let questionCards = document.querySelectorAll(".card");
-  // for (let i = 0; i < questionCards.length; i++) {
-  //   //let Question
-  // }
-  // console.log(questionCards);
-  // let questions = document.querySelectorAll("input[type = radio]");
-  // console.log(questions);
-  //forEach;
+  let questionCards = document.querySelectorAll(".card");
+  let allQuestionsAttempted = false;
+  let unansweredQuestions = [];
+  let maxScore = questionCards.length;
+  for (let i = 0; i < questionCards.length; i++) {
+    let responseChecked = questionCards[i].querySelectorAll(
+      "input[type = radio]:checked"
+    );
+    if (responseChecked.length < 1) {
+      console.log("This is so weird...");
+      unansweredQuestions.push(i + 1);
+      maxScore--;
+    }
+  }
+  let modal = new bootstrap.Modal(document.querySelector("#exampleModal"));
+  let modalBody = document.querySelector("#remainingQuestions");
+  modalBody.innerHTML = `Please answer the following questions before submitting the quiz: ${unansweredQuestions}`;
+  modal.show();
 }

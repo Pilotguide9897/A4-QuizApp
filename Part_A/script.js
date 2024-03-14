@@ -23,9 +23,9 @@ function ShowQuestions(quizData) {
   quizTitle.innerHTML = data.title;
   quizBody.innerHTML = "";
   let cardHTML = "";
-  let count = 0;
+  let count = 1;
   data.questions.forEach((question, i) => {
-    cardHTML += `<div class="card">`;
+    cardHTML += `<div class="card questionSection">`;
     cardHTML += `<h3 class="questionText">Question ${count}: <br /> ${question.questionText}</h3>`;
     cardHTML += `<ul>`;
     count++;

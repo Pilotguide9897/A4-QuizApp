@@ -47,14 +47,9 @@
       "answer": 1
     },
     {
-      "questionText": "What unique feature do marsupials have compared to other mammals?",
-      "choices": [
-        "They lay eggs",
-        "They have a pouch for carrying their young",
-        "They are capable of flight",
-        "They live underwater"
-      ],
-      "answer": 2
+      "questionText": "A unique feature of marsupials compared to other mammals is that they have a pouch for carrying their young.",
+      "choices": ["True", "False"],
+      "answer": 1
     },
     {
       "questionText": "Which of the following animals uses echolocation to navigate and find food?",

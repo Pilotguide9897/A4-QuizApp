@@ -25,7 +25,7 @@ function ShowQuestions(quizData) {
   let cardHTML = "";
   data.questions.forEach((question, i) => {
     cardHTML += `<div class="card">`;
-    cardHTML += `<h3>${question.questionText}</h3>`;
+    cardHTML += `<h3 class="questionText">${question.questionText}</h3>`;
     cardHTML += `<ul>`;
 
     data.questions[i].choices.forEach((choice, j) => {

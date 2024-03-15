@@ -110,10 +110,10 @@ function accumulateScore() {
     //Pushes correct answer to correctAnswers Array
     correctAnswers.push(correctAnswer);
     let options = questionCards[i].querySelectorAll("input[type = radio]");
-    for (count = 1; count < options.length; count++) {
+    for (count = 0; count < options.length; count++) {
       if (options[count].checked) {
         //Pushes number of checked radio button to userAnswers array
-        userAnswers.push(count);
+        userAnswers.push(count + 1);
         break;
       }
     }

@@ -43,19 +43,19 @@ function ShowQuestions(quizData) {
     </button>`;
     tabHTML += `</li>`;
   });
-  console.log(tabHTML);
   tabs.innerHTML += tabHTML;
 
   // Doing the Tab Content
   data.questions.forEach((question, i) => {
     sectionHTML += `<div class = "tab-pane fade mt-5" id = "pills-Question${i}" role = "tabpanel">`;
-    sectionHTML += `<div class="card">`;
+    sectionHTML += `<div class="card" data-correctAnswer = "${data.questions[i].answer}">`;
     sectionHTML += `<h3>${question.questionText}</h3>`;
     sectionHTML += `<ul>`;
     data.questions[i].choices.forEach((choice, j) => {
-      console.log(choice);
       sectionHTML += `<li class="list-group-item">`;
-      sectionHTML += `<input type = "radio" id = "Q${i}Choice${j}" name = "Question${i}" value = "${data.questions[i].answer}">`;
+      sectionHTML += `<input type = "radio" id = "Q${i + 1}Choice${
+        j + 1
+      }" name = "Question${i}" value = "${data.questions[i].answer}">`;
       sectionHTML += `<label for = "Questions">${choice}</label></li>`;
     });
     sectionHTML += `</ul>`;
@@ -66,28 +66,53 @@ function ShowQuestions(quizData) {
   document.querySelector(".nav-link").classList.add("active");
   tabContent.querySelector("#pills-Question0").classList.add("active");
   tabContent.querySelector("#pills-Question0").classList.add("show");
-
-  console.log(sectionHTML);
 }
 
 // Checks and determines whether there are any unanswered questions.
 function showResults() {
   let questionCards = document.querySelectorAll(".card");
+  let modal = new bootstrap.Modal(document.querySelector("#exampleModal"));
+  let modalBody = document.querySelector("#remainingQuestions");
   let allQuestionsAttempted = false;
   let unansweredQuestions = [];
-  let maxScore = questionCards.length;
   for (let i = 0; i < questionCards.length; i++) {
+    console.log(questionCards[i]);
     let responseChecked = questionCards[i].querySelectorAll(
       "input[type = radio]:checked"
     );
     if (responseChecked.length < 1) {
-      console.log("This is so weird...");
       unansweredQuestions.push(i + 1);
-      maxScore--;
+    } else {
+      allQuestionsAttempted = true;
     }
   }
-  let modal = new bootstrap.Modal(document.querySelector("#exampleModal"));
-  let modalBody = document.querySelector("#remainingQuestions");
   modalBody.innerHTML = `Please answer the following questions before submitting the quiz: ${unansweredQuestions}`;
-  modal.show();
+  if (allQuestionsAttempted == false) {
+    modal.show();
+  } else {
+    accumulateScore();
+  }
+}
+
+function accumulateScore() {
+  let questionCards = document.querySelectorAll(".card");
+  console.log(questionCards);
+  let correctAnswers = [];
+  let userAnswers = [];
+  for (let i = 0; i < questionCards.length; i++) {
+    console.log(questionCards[i]);
+    let correctAnswer = questionCards[i].dataset.correctanswer;
+    correctAnswers.push(correctAnswer);
+    console.log(userAnswers);
+    // let responseChecked = questionCards[i].querySelectorAll(
+    //   "input[type = radio]:checked"
+    // );
+    let checkedResponse = questionCards[i].querySelectorAll(
+      "input[type = radio]"
+    );
+    //console.log(userAnswer);
+    //userAnswers.push(userAnswer);
+    //console.log(userAnswers);
+    console.log(checkedResponse);
+  }
 }

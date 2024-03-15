@@ -9,7 +9,7 @@ function fetchData() {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      console.log("Response Data:", xhr.responseText);
+      //console.log("Response Data:", xhr.responseText);
       let quizData = JSON.parse(xhr.responseText);
       ShowQuestions(quizData);
     }
@@ -76,7 +76,7 @@ function showResults() {
   let allQuestionsAttempted = false;
   let unansweredQuestions = [];
   for (let i = 0; i < questionCards.length; i++) {
-    console.log(questionCards[i]);
+    //console.log(questionCards[i]);
     let responseChecked = questionCards[i].querySelectorAll(
       "input[type = radio]:checked"
     );
@@ -87,7 +87,7 @@ function showResults() {
     }
   }
   modalBody.innerHTML = `Please answer the following questions before submitting the quiz: ${unansweredQuestions}`;
-  if (allQuestionsAttempted == false) {
+  if (unansweredQuestions.length > 0) {
     modal.show();
   } else {
     accumulateScore();
@@ -95,24 +95,67 @@ function showResults() {
 }
 
 function accumulateScore() {
+  let score = document.querySelector(".scoreSection");
+
   let questionCards = document.querySelectorAll(".card");
   console.log(questionCards);
   let correctAnswers = [];
   let userAnswers = [];
+  let total = 0;
+  let count;
+
+  //Loops through all cards to look at correct answer, and find which number input is checked
   for (let i = 0; i < questionCards.length; i++) {
-    console.log(questionCards[i]);
-    let correctAnswer = questionCards[i].dataset.correctanswer;
+    let correctAnswer = Number(questionCards[i].dataset.correctanswer);
+    //Pushes correct answer to correctAnswers Array
     correctAnswers.push(correctAnswer);
-    console.log(userAnswers);
-    // let responseChecked = questionCards[i].querySelectorAll(
-    //   "input[type = radio]:checked"
-    // );
-    let checkedResponse = questionCards[i].querySelectorAll(
-      "input[type = radio]"
-    );
-    //console.log(userAnswer);
-    //userAnswers.push(userAnswer);
-    //console.log(userAnswers);
-    console.log(checkedResponse);
+    let options = questionCards[i].querySelectorAll("input[type = radio]");
+    for (count = 1; count < options.length; count++) {
+      if (options[count].checked) {
+        //Pushes number of checked radio button to userAnswers array
+        userAnswers.push(count);
+        break;
+      }
+    }
   }
+  //Loops through both arrays to see if answers match, if so, "correct". If not, "incorrect"
+  for (let questions = 0; questions < questionCards.length; questions++) {
+    if (userAnswers[questions] === correctAnswers[questions]) {
+      total++;
+      score.innerHTML +=
+        "<div class= 'correct'>" +
+        "Question #" +
+        (questions + 1) +
+        " Correct" +
+        "<br />" +
+        "Your answer: " +
+        userAnswers[questions] +
+        "     " +
+        "Correct Answer: " +
+        correctAnswer[questions] +
+        "</div>";
+    } else {
+      score.innerHTML +=
+        "<div class= 'incorrect'>" +
+        "Question #" +
+        (questions + 1) +
+        " Incorrect" +
+        "<br />" +
+        "Your answer: " +
+        userAnswers[questions] +
+        "     " +
+        "Correct Answer: " +
+        correctAnswers[questions] +
+        "</div>";
+    }
+  }
+  score.innerHTML +=
+    "<div id='scoreDisplay'> Your Quiz Score is: " +
+    total +
+    "&#47;" +
+    questionCards.length +
+    " | " +
+    total / questionCards.length +
+    "%" +
+    "</div>";
 }

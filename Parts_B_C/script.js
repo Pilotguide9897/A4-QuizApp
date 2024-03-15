@@ -108,7 +108,7 @@ function accumulateScore() {
   for (let i = 0; i < questionCards.length; i++) {
     let correctAnswer = Number(questionCards[i].dataset.correctanswer);
     //Pushes correct answer to correctAnswers Array
-    correctAnswers.push(correctAnswer);
+    correctAnswers.push(correctAnswer + 1);
     let options = questionCards[i].querySelectorAll("input[type = radio]");
     for (count = 0; count < options.length; count++) {
       if (options[count].checked) {
@@ -118,6 +118,7 @@ function accumulateScore() {
       }
     }
   }
+
   //Loops through both arrays to see if answers match, if so, "correct". If not, "incorrect"
   for (let questions = 0; questions < questionCards.length; questions++) {
     if (userAnswers[questions] === correctAnswers[questions]) {
@@ -132,7 +133,7 @@ function accumulateScore() {
         userAnswers[questions] +
         "     " +
         "Correct Answer: " +
-        correctAnswer[questions] +
+        correctAnswers[questions] +
         "</div>";
     } else {
       score.innerHTML +=
@@ -155,7 +156,7 @@ function accumulateScore() {
     "&#47;" +
     questionCards.length +
     " | " +
-    total / questionCards.length +
+    (total / questionCards.length) * 100 +
     "%" +
     "</div>";
 }

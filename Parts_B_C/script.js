@@ -121,32 +121,60 @@ function accumulateScore() {
 
   //Loops through both arrays to see if answers match, if so, "correct". If not, "incorrect"
   for (let questions = 0; questions < questionCards.length; questions++) {
+    // Grab Question Text
+    let questionText = questionCards[questions].querySelector("h3").innerText;
+    console.log(questionText);
+    // Grab the Correct Option
+    let correctOption = questionCards[questions].dataset.correctanswer;
+    console.log(correctOption);
+    let correctAnswerLI =
+      questionCards[questions].querySelectorAll("li")[correctOption];
+    let correctAnswerText = correctAnswerLI.querySelector("label").innerText;
+    console.log(correctAnswerLI);
+    console.log(correctAnswerText);
+    let optionsList = questionCards[questions].querySelectorAll("li");
+    console.log(optionsList);
+    // Grab the User's Answer
+    let userAnswer = questionCards[questions].querySelector(
+      "input[type = radio]:checked"
+    ).parentElement;
+    let userAnswerLabel = userAnswer.querySelector("label").innerText;
+    console.log(userAnswerLabel);
+    console.log(userAnswer);
     if (userAnswers[questions] === correctAnswers[questions]) {
       total++;
       score.innerHTML +=
         "<div class= 'correct'>" +
         "Question #" +
         (questions + 1) +
-        " Correct" +
-        "<br />" +
+        ": " +
+        questionText +
+        "<br>" +
+        " - Correct" +
+        "<br>" +
         "Your answer: " +
-        userAnswers[questions] +
+        userAnswerLabel +
         "     " +
+        "<br>" +
         "Correct Answer: " +
-        correctAnswers[questions] +
+        correctAnswerText +
         "</div>";
     } else {
       score.innerHTML +=
         "<div class= 'incorrect'>" +
         "Question #" +
         (questions + 1) +
-        " Incorrect" +
+        ": " +
+        questionText +
+        "<br>" +
+        " - Incorrect" +
         "<br />" +
         "Your answer: " +
-        userAnswers[questions] +
+        userAnswerLabel +
         "     " +
+        "<br>" +
         "Correct Answer: " +
-        correctAnswers[questions] +
+        correctAnswerText +
         "</div>";
     }
   }

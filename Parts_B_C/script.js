@@ -1,11 +1,24 @@
 window.onload = function () {
-  fetchData();
+  let quizSelection = document.querySelector("#quizSelection");
+  fetchData(quizSelection.value);
+  quizSelection.addEventListener("change", function () {
+    fetchData(this.value);
+  });
   let submitButton = document.querySelector("#btnSubmit");
   submitButton.addEventListener("click", showResults);
 };
 
-function fetchData() {
-  let url = "../Part_A/QuizTemplates/GeographyQuiz.json";
+function fetchData(quizSelection) {
+  console.log(quizSelection);
+  let url;
+  if (quizSelection == "geography") {
+    url = "../Part_A/QuizTemplates/GeographyQuiz.json";
+  } else if (quizSelection == "math") {
+    url = "../Part_A/QuizTemplates/MathQuiz.json";
+  } else {
+    url = "../Part_D/CustomQuiz.json";
+  }
+
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -23,6 +36,7 @@ function ShowQuestions(quizData) {
   let quizTitle = document.querySelector("#quizTitle");
   let tabs = document.querySelector("#tabs");
   let tabContent = document.querySelector("#tabContent");
+  let scoreSection = (document.querySelector(".scoreSection").innerHTML = "");
   let data = quizData;
   quizTitle.innerHTML = data.title;
   tabs.innerHTML = "";
@@ -49,7 +63,9 @@ function ShowQuestions(quizData) {
   data.questions.forEach((question, i) => {
     sectionHTML += `<div class = "tab-pane fade mt-5" id = "pills-Question${i}" role = "tabpanel">`;
     sectionHTML += `<div class="card" data-correctAnswer = "${data.questions[i].answer}">`;
-    sectionHTML += `<h3>${question.questionText}</h3>`;
+    sectionHTML += `<h3 class="questionText">Question ${i + 1}: ${
+      question.questionText
+    }</h3>`;
     sectionHTML += `<ul>`;
     data.questions[i].choices.forEach((choice, j) => {
       sectionHTML += `<li class="list-group-item">`;
@@ -119,6 +135,11 @@ function accumulateScore() {
     }
   }
 
+  score.innerHTML = "";
+  let scoreHTML = `<table class="table">`;
+
+  scoreHTML += `<tr><td>Question #</td><td>Question Text</td><td>Correct Answer</td><td>Your Answer</td><td>Score</td></tr>`;
+
   //Loops through both arrays to see if answers match, if so, "correct". If not, "incorrect"
   for (let questions = 0; questions < questionCards.length; questions++) {
     // Grab Question Text
@@ -141,43 +162,67 @@ function accumulateScore() {
     let userAnswerLabel = userAnswer.querySelector("label").innerText;
     console.log(userAnswerLabel);
     console.log(userAnswer);
-    if (userAnswers[questions] === correctAnswers[questions]) {
-      total++;
-      score.innerHTML +=
-        "<div class= 'correct'>" +
-        "Question #" +
-        (questions + 1) +
-        ": " +
-        questionText +
-        "<br>" +
-        " - Correct" +
-        "<br>" +
-        "Your answer: " +
-        userAnswerLabel +
-        "     " +
-        "<br>" +
-        "Correct Answer: " +
-        correctAnswerText +
-        "</div>";
+
+    // Build table for the
+    let userScore;
+    console.log(userAnswerLabel);
+    console.log(correctAnswerText);
+    if (userAnswerLabel == correctAnswerText) {
+      userScore = 1;
+      total += 1;
+      scoreHTML += `<tr class="correct"><td>${
+        questions + 1
+      }</td><td>${questionText}</td><td>${correctAnswerText}</td><td>${userAnswerLabel}</td><td>${userScore}</td></tr>`;
     } else {
-      score.innerHTML +=
-        "<div class= 'incorrect'>" +
-        "Question #" +
-        (questions + 1) +
-        ": " +
-        questionText +
-        "<br>" +
-        " - Incorrect" +
-        "<br />" +
-        "Your answer: " +
-        userAnswerLabel +
-        "     " +
-        "<br>" +
-        "Correct Answer: " +
-        correctAnswerText +
-        "</div>";
+      userScore = 0;
+      scoreHTML += `<tr class="incorrect"><td>${
+        questions + 1
+      }</td><td>${questionText}</td><td>${correctAnswerText}</td><td>${userAnswerLabel}</td><td>${userScore}</td></tr>`;
     }
+
+    // scoreHTML += `<tr><td>${
+    //   questions + 1
+    // }</td><td>${questionText}</td><td>${correctAnswerText}</td><td>${userAnswerLabel}</td><td>${userScore}</td></tr>`;
+
+    // if (userAnswers[questions] === correctAnswers[questions]) {
+    //   total++;
+    //   score.innerHTML +=
+    //     "<div class= 'correct'>" +
+    //     "Question #" +
+    //     (questions + 1) +
+    //     ": " +
+    //     questionText +
+    //     "<br>" +
+    //     " - Correct" +
+    //     "<br>" +
+    //     "Your answer: " +
+    //     userAnswerLabel +
+    //     "     " +
+    //     "<br>" +
+    //     "Correct Answer: " +
+    //     correctAnswerText +
+    //     "</div>";
+    // } else {
+    //   score.innerHTML +=
+    //     "<div class= 'incorrect'>" +
+    //     "Question #" +
+    //     (questions + 1) +
+    //     ": " +
+    //     questionText +
+    //     "<br>" +
+    //     " - Incorrect" +
+    //     "<br />" +
+    //     "Your answer: " +
+    //     userAnswerLabel +
+    //     "     " +
+    //     "<br>" +
+    //     "Correct Answer: " +
+    //     correctAnswerText +
+    //     "</div>";
+    // }
   }
+  scoreHTML += `</table>`;
+  score.innerHTML = scoreHTML;
   score.innerHTML +=
     "<div id='scoreDisplay'> Your Quiz Score is: " +
     total +

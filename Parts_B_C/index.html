@@ -20,25 +20,83 @@
       body {
         margin-left: 1%;
       }
+
+      .correct,
       .incorrect {
-        background-color: red;
-        font-size: 1.5em;
-        margin-bottom: 0.5%;
+        font-size: 1.4rem;
       }
-      .correct {
-        background-color: green;
-        font-size: 1.5em;
-        margin-bottom: 0.5%;
+      .incorrect > td {
+        color: red;
+        font-weight: bolder;
       }
       #scoreDisplay {
         font-size: 2em;
         font-weight: bold;
+      }
+
+      .questionText {
+        background-color: lightgray;
+        font-weight: bold;
+        padding: 1%;
+      }
+      li {
+        font-size: 1.5rem;
+      }
+
+      input[type="radio"] {
+        transform: scale(2);
+        margin-right: 0.5%;
+      }
+      .questionSection {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        border: solid thin blue;
+      }
+
+      .card {
+        margin-right: 25px;
+      }
+
+      h1 {
+        font-size: 300%;
+        margin-top: 25px;
+      }
+
+      #btnSubmit {
+        transform: scale(1.5);
+        margin-left: 1%;
+      }
+
+      table,
+      tr,
+      td {
+        border-collapse: collapse;
+        border: solid thin gray;
+        padding: 5%;
+      }
+
+      tr:first-child {
+        background-color: lightgray;
+        font-weight: bold;
+        font-size: 1.4rem;
       }
     </style>
     <script src="./script.js"></script>
   </head>
 
   <body>
+    <div>
+      <label for="quizSelection">Select a Quiz:</label>
+
+      <select name="quizSelection" id="quizSelection">
+        <option value="geography">Geography</option>
+        <option value="math">Math</option>
+        <option value="ecology">Ecology</option>
+      </select>
+    </div>
     <header>
       <h1 id="quizTitle"></h1>
     </header>
@@ -47,7 +105,7 @@
         <ul class="nav nav-pills" id="tabs"></ul>
         <div class="tab-content" id="tabContent"></div>
       </div>
-      <div class="scoreSection"></div>
+      <div class="scoreSection mt-3 me-4"></div>
       <aside>
         <!-- Modal for informing the user that they have forgotten to answer questions -->
         <div
@@ -76,7 +134,7 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  class="btn btn-primary"
                   data-bs-dismiss="modal"
                 >
                   Close
@@ -88,7 +146,7 @@
       </aside>
     </main>
     <footer>
-      <button type="button" class="btn btn-success mt-3" id="btnSubmit">
+      <button type="button" class="btn btn-primary mt-5" id="btnSubmit">
         Submit
       </button>
     </footer>

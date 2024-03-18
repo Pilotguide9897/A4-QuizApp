@@ -7,7 +7,6 @@ function fetchData() {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      console.log("Response Data:", xhr.responseText);
       let quizData = JSON.parse(xhr.responseText);
       ShowQuestions(quizData);
     }
@@ -31,7 +30,6 @@ function ShowQuestions(quizData) {
     count++;
 
     data.questions[i].choices.forEach((choice, j) => {
-      console.log(choice);
       cardHTML += `<li class="list-group-item">`;
       cardHTML += `<input type = "radio" id = Q${i}Choice${j} name = Question${i} value = ${data.questions[i].answer}>`;
       cardHTML += `<label for = "Questions">${choice}</label></li>`;
@@ -40,6 +38,5 @@ function ShowQuestions(quizData) {
     cardHTML += `</ul>`;
     cardHTML += `</div>`;
   });
-  console.log(cardHTML);
   quizBody.innerHTML = cardHTML;
 }

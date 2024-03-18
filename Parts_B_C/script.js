@@ -22,7 +22,6 @@ function fetchData(quizSelection) {
   let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-      //console.log("Response Data:", xhr.responseText);
       let quizData = JSON.parse(xhr.responseText);
       ShowQuestions(quizData);
     }
@@ -92,7 +91,6 @@ function showResults() {
   let allQuestionsAttempted = false;
   let unansweredQuestions = [];
   for (let i = 0; i < questionCards.length; i++) {
-    //console.log(questionCards[i]);
     let responseChecked = questionCards[i].querySelectorAll(
       "input[type = radio]:checked"
     );
@@ -114,7 +112,7 @@ function accumulateScore() {
   let score = document.querySelector(".scoreSection");
 
   let questionCards = document.querySelectorAll(".card");
-  console.log(questionCards);
+  //console.log(questionCards);
   let correctAnswers = [];
   let userAnswers = [];
   let total = 0;
@@ -144,29 +142,20 @@ function accumulateScore() {
   for (let questions = 0; questions < questionCards.length; questions++) {
     // Grab Question Text
     let questionText = questionCards[questions].querySelector("h3").innerText;
-    console.log(questionText);
     // Grab the Correct Option
     let correctOption = questionCards[questions].dataset.correctanswer;
-    console.log(correctOption);
     let correctAnswerLI =
       questionCards[questions].querySelectorAll("li")[correctOption];
     let correctAnswerText = correctAnswerLI.querySelector("label").innerText;
-    console.log(correctAnswerLI);
-    console.log(correctAnswerText);
     let optionsList = questionCards[questions].querySelectorAll("li");
-    console.log(optionsList);
     // Grab the User's Answer
     let userAnswer = questionCards[questions].querySelector(
       "input[type = radio]:checked"
     ).parentElement;
     let userAnswerLabel = userAnswer.querySelector("label").innerText;
-    console.log(userAnswerLabel);
-    console.log(userAnswer);
 
     // Build table for the
     let userScore;
-    console.log(userAnswerLabel);
-    console.log(correctAnswerText);
     if (userAnswerLabel == correctAnswerText) {
       userScore = 1;
       total += 1;
@@ -179,47 +168,6 @@ function accumulateScore() {
         questions + 1
       }</td><td>${questionText}</td><td>${correctAnswerText}</td><td>${userAnswerLabel}</td><td>${userScore}</td></tr>`;
     }
-
-    // scoreHTML += `<tr><td>${
-    //   questions + 1
-    // }</td><td>${questionText}</td><td>${correctAnswerText}</td><td>${userAnswerLabel}</td><td>${userScore}</td></tr>`;
-
-    // if (userAnswers[questions] === correctAnswers[questions]) {
-    //   total++;
-    //   score.innerHTML +=
-    //     "<div class= 'correct'>" +
-    //     "Question #" +
-    //     (questions + 1) +
-    //     ": " +
-    //     questionText +
-    //     "<br>" +
-    //     " - Correct" +
-    //     "<br>" +
-    //     "Your answer: " +
-    //     userAnswerLabel +
-    //     "     " +
-    //     "<br>" +
-    //     "Correct Answer: " +
-    //     correctAnswerText +
-    //     "</div>";
-    // } else {
-    //   score.innerHTML +=
-    //     "<div class= 'incorrect'>" +
-    //     "Question #" +
-    //     (questions + 1) +
-    //     ": " +
-    //     questionText +
-    //     "<br>" +
-    //     " - Incorrect" +
-    //     "<br />" +
-    //     "Your answer: " +
-    //     userAnswerLabel +
-    //     "     " +
-    //     "<br>" +
-    //     "Correct Answer: " +
-    //     correctAnswerText +
-    //     "</div>";
-    // }
   }
   scoreHTML += `</table>`;
   score.innerHTML = scoreHTML;

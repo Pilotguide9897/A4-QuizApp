@@ -9,7 +9,6 @@ window.onload = function () {
 };
 
 function fetchData(quizSelection) {
-  console.log(quizSelection);
   let url;
   if (quizSelection == "geography") {
     url = "../Part_A/QuizTemplates/GeographyQuiz.json";
@@ -112,13 +111,12 @@ function accumulateScore() {
   let score = document.querySelector(".scoreSection");
 
   let questionCards = document.querySelectorAll(".card");
-  //console.log(questionCards);
   let correctAnswers = [];
   let userAnswers = [];
   let total = 0;
   let count;
 
-  //Loops through all cards to look at correct answer, and find which number input is checked
+  // Loop  through all cards to look at correct answer, and find which number input is checked
   for (let i = 0; i < questionCards.length; i++) {
     let correctAnswer = Number(questionCards[i].dataset.correctanswer);
     //Pushes correct answer to correctAnswers Array
@@ -138,7 +136,7 @@ function accumulateScore() {
 
   scoreHTML += `<tr><td>Question #</td><td>Question Text</td><td>Correct Answer</td><td>Your Answer</td><td>Score</td></tr>`;
 
-  //Loops through both arrays to see if answers match, if so, "correct". If not, "incorrect"
+  // Loops through both arrays to see if answers match, if so, "correct". If not, "incorrect"
   for (let questions = 0; questions < questionCards.length; questions++) {
     // Grab Question Text
     let questionText = questionCards[questions].querySelector("h3").innerText;
